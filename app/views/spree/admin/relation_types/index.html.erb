@@ -1,0 +1,37 @@
+<%= render 'spree/admin/shared/configuration_menu' %>
+
+<div class="toolbar">
+  <ul class="actions header-action-links inline-menu">
+    <li>
+      <%= button_link_to Spree.t(:new_relation_type), new_object_url, icon: 'add'  %>
+    </li>
+  </ul>
+  <br class="clear" />
+</div>
+
+<h1><%= Spree.t(:relation_types) %></h1>
+
+<table class="index">
+  <thead>
+    <tr data-hook="admin_relation_types_index_headers">
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:applies_to) %></th>
+      <th><%= Spree.t(:description) %></th>
+      <th data-hook="admin_relation_types_index_header_actions">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @relation_types.each do |relation_type| %>
+      <tr id="<%= dom_id relation_type %>" data-hook="admin_relation_types_index_rows">
+        <td><%= relation_type.name %></td>
+        <td><%= relation_type.applies_to %></td>
+        <td><%= relation_type.description %></td>
+        <td width="140px" data-hook="admin_relation_types_index_row_actions">
+          <%= link_to_edit relation_type %> &nbsp;
+          <%= link_to_delete relation_type %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
